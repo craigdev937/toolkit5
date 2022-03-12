@@ -5,11 +5,20 @@ import { toast } from "react-toastify";
 import { ContAPI } from "../global/ContAPI";
 
 export const Home = (): JSX.Element => {
-    const { error, isLoading, data } = ContAPI.useFetchAllQuery();
+    const { error, isLoading, data } = 
+    ContAPI.useFetchAllQuery();
+    const [deleteContact] = ContAPI.useDeleteMutation();
     
     React.useEffect(() => {
         if (error) toast.error("Something went wrong!");
     }, [error]);
+
+    const handleDelete = async (_id: string) => {
+        if (window.confirm("Are you sure you want to delete?")) {
+            await deleteContact(_id);
+            toast.success("The Contact was Deleted!");
+        };
+    };
 
     if (isLoading) return <h1>Loading...</h1>;
 
@@ -49,7 +58,7 @@ export const Home = (): JSX.Element => {
                                 </Link>
                                 <button 
                                     className="btn btn-delete"
-                                    onClick={() => {}}
+                                    onClick={() => handleDelete(item._id)}
                                     >Delete
                                 </button>
                                 <Link to={`/info/${item._id}`}>
