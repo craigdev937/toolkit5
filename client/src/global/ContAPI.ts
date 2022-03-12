@@ -2,18 +2,18 @@ import { createApi,
     fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IContact } from "../models/Interfaces";
 
-const URL = "http://localhost:9000";
+const URL = "http://localhost:9000/api/";
 export const ContAPI = createApi({
     reducerPath: "ContAPI",
     tagTypes: ["Contact"],
     baseQuery: fetchBaseQuery({ baseUrl: URL }),
     endpoints: (builder) => ({
         fetchAll: builder.query<IContact[], void>({
-            query: () => "/api",
+            query: () => "/",
             providesTags: ["Contact"],
         }),
         getOne: builder.query<IContact, string>({
-            query: (_id) => `/api/${_id}`,
+            query: (_id) => `/${_id}`,
             providesTags: ["Contact"],
         }),
         add: builder.mutation<{}, IContact>({

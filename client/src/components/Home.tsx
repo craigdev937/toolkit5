@@ -58,7 +58,7 @@ export const Home = (): JSX.Element => {
                                 </Link>
                                 <button 
                                     className="btn btn-delete"
-                                    onClick={() => handleDelete(item._id)}
+                                    onClick={() => handleDelete(item._id!)}
                                     >Delete
                                 </button>
                                 <Link to={`/info/${item._id}`}>
