@@ -1,8 +1,9 @@
 import express from "express";
-import { HomeIndex } from "../controllers/contCon.js";
+import { CONTACT } from "../controllers/contCon.js";
 
 export const contRt = express.Router();
-    contRt.get("/", HomeIndex);
+    contRt.post("/", CONTACT.Create);
+    contRt.get("/", CONTACT.FetchAll);
 
 
 
